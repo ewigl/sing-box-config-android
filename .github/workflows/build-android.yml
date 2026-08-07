@@ -35,7 +35,11 @@ jobs:
           conf_path = Path("./scripts/tproxy.conf")
 
           data = json.loads(json_path.read_text(encoding="utf-8"))
-          packages = " ".join(data.get("package", []))
+          packages = " ".join(
+              item.get("package", "")
+              for item in data
+              if isinstance(item, dict) and isinstance(item.get("package"), str) and item.get("package")
+          )
 
           text = conf_path.read_text(encoding="utf-8")
           updated, count = re.subn(
