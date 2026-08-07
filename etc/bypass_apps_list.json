@@ -1,0 +1,170 @@
+[
+  {
+    "name": "支付宝",
+    "package": "com.eg.android.AlipayGphone"
+  },
+  {
+    "name": "中国工商银行",
+    "package": "com.icbc"
+  },
+  {
+    "name": "网上国网",
+    "package": "com.sgcc.wsgw.cn"
+  },
+  {
+    "name": "同花顺至尊版",
+    "package": "com.hexin.plat.android.supremacy"
+  },
+  {
+    "name": "雪球",
+    "package": "com.xueqiu.android"
+  },
+  {
+    "name": "交管12123",
+    "package": "com.tmri.app.main"
+  },
+  {
+    "name": "京东",
+    "package": "com.jingdong.app.mall"
+  },
+  {
+    "name": "高德地图",
+    "package": "com.autonavi.minimap"
+  },
+  {
+    "name": "零跑",
+    "package": "com.dahua.leapmotor"
+  },
+  {
+    "name": "淘宝闪购",
+    "package": "me.ele"
+  },
+  {
+    "name": "Piliplus",
+    "package": "com.example.piliplus"
+  },
+  {
+    "name": "拼多多",
+    "package": "com.xunmeng.pinduoduo"
+  },
+  {
+    "name": "国家网络身份认证",
+    "package": "cn.cyberidentity.certification"
+  },
+  {
+    "name": "南京银行",
+    "package": "cn.com.njcb.android.mobilebank"
+  },
+  {
+    "name": "贝壳找房",
+    "package": "com.lianjia.beike"
+  },
+  {
+    "name": "BOSS直聘",
+    "package": "com.hpbr.bosszhipin"
+  },
+  {
+    "name": "钉钉",
+    "package": "com.alibaba.android.rimet"
+  },
+  {
+    "name": "电子税务局",
+    "package": "cn.gov.chinatax.gt4.app"
+  },
+  {
+    "name": "懂车帝",
+    "package": "com.ss.android.auto"
+  },
+  {
+    "name": "华为应用市场",
+    "package": "com.huawei.appmarket"
+  },
+  {
+    "name": "汽车之家",
+    "package": "com.cubic.autohome"
+  },
+  {
+    "name": "IT之家",
+    "package": "com.ruanmei.ithome"
+  },
+  {
+    "name": "江海证券组合家",
+    "package": "com.jhzq.zhj"
+  },
+  {
+    "name": "京东金融",
+    "package": "com.jd.jrapp"
+  },
+  {
+    "name": "美团",
+    "package": "com.sankuai.meituan"
+  },
+  {
+    "name": "美团外卖",
+    "package": "com.sankuai.meituan.takeoutnew"
+  },
+  {
+    "name": "QQ",
+    "package": "com.tencent.mobileqq"
+  },
+  {
+    "name": "淘宝",
+    "package": "com.taobao.taobao"
+  },
+  {
+    "name": "铁路12306",
+    "package": "com.MobileTicket"
+  },
+  {
+    "name": "通达信",
+    "package": "com.tdx.AndroidNew"
+  },
+  {
+    "name": "同花顺",
+    "package": "com.hexin.plat.android"
+  },
+  {
+    "name": "王者荣耀",
+    "package": "com.tencent.tmgp.sgame"
+  },
+  {
+    "name": "唯品会",
+    "package": "com.achievo.vipshop"
+  },
+  {
+    "name": "微信",
+    "package": "com.tencent.mm"
+  },
+  {
+    "name": "闲鱼",
+    "package": "com.taobao.idlefish"
+  },
+  {
+    "name": "小黑盒",
+    "package": "com.max.xiaoheihe"
+  },
+  {
+    "name": "小红书",
+    "package": "com.xingin.xhs"
+  },
+  {
+    "name": "携程旅行",
+    "package": "ctrip.android.view"
+  },
+  {
+    "name": "养基宝",
+    "package": "yangjibao.app"
+  },
+  {
+    "name": "涨乐财富通",
+    "package": "com.lphtsccft"
+  },
+  {
+    "name": "酷安",
+    "package": "com.coolapk.market"
+  },
+  {
+    "name": "软件商店(ColorOS)",
+    "package": "com.heytap.market"
+  }
+]

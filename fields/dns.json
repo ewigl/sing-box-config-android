@@ -1,0 +1,47 @@
+{
+  "dns": {
+    "servers": [
+      {
+        "type": "tls",
+        "tag": "dns_cf",
+        "server": "1.1.1.1",
+        "detour": "🚀 Default"
+      },
+      {
+        "type": "tls",
+        "tag": "dns_ali",
+        "server": "223.5.5.5"
+      },
+      {
+        "type": "local",
+        "tag": "dns_local",
+        "detour": "⚡ Direct"
+      }
+    ],
+    "rules": [
+      {
+        "rule_set": ["geosite-cn"],
+        "server": "dns_ali"
+      },
+      {
+        "rule_set": ["geosite-private"],
+        "server": "dns_local"
+      },
+      {
+        "action": "evaluate",
+        "server": "dns_cf"
+      },
+      {
+        "match_response": true,
+        "rule_set": ["geoip-cn"],
+        "action": "route",
+        "server": "dns_ali"
+      },
+      {
+        "action": "route",
+        "server": "dns_cf"
+      }
+    ],
+    "final": "dns_ali"
+  }
+}

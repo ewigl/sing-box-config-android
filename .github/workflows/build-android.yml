@@ -1,0 +1,110 @@
+name: Build for Box4Magisk
+
+on:
+  workflow_call:
+    inputs:
+      sing_box_version:
+        description: sing-box version.
+        required: true
+        type: string
+      sing_box_asset_keyword:
+        description: Keyword to match sing-box android asset.
+        required: false
+        default: sing-box-*-android-arm64.tar.gz
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Update tproxy bypass app list
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          json_path = Path("./etc/bypass_apps_list.json")
+          conf_path = Path("./scripts/tproxy.conf")
+
+          data = json.loads(json_path.read_text(encoding="utf-8"))
+          packages = " ".join(data.get("package", []))
+
+          text = conf_path.read_text(encoding="utf-8")
+          updated, count = re.subn(
+              r'^BYPASS_APPS_LIST=.*$',
+              f'BYPASS_APPS_LIST="{packages}"',
+              text,
+              count=1,
+              flags=re.MULTILINE,
+          )
+
+          if count != 1:
+              raise SystemExit("Failed to update BYPASS_APPS_LIST in tproxy.conf")
+
+          conf_path.write_text(updated, encoding="utf-8")
+          print("Updated tproxy.conf BYPASS_APPS_LIST:")
+          print(packages)
+          PY
+
+      - name: Prepare staging directory
+        run: |
+          mkdir -p staging/bin
+          mkdir -p staging/scripts
+          mkdir -p staging/sing-box/ui
+
+          cp fields/* staging/sing-box/
+          cp scripts/* staging/scripts/
+
+      - name: Download and extract dashboard
+        run: |
+          curl -L https://github.com/SagerNet/sing-box-dashboard/archive/refs/heads/gh-pages.zip -o ui.zip
+          unzip -q ui.zip -d ui_temp/
+
+          mv ui_temp/*/* staging/sing-box/ui/
+          rm -rf ui_temp/ ui.zip
+
+      - name: Download and process sing-box
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download ${{ inputs.sing_box_version }} \
+            -R SagerNet/sing-box \
+            -p "${{ inputs.sing_box_asset_keyword }}" \
+
+          GZ_FILE=$(ls *.gz | head -n 1)
+
+          tar -xzf "$GZ_FILE" --strip-components=1 -C staging/bin
+
+          cd staging/bin
+
+          ls -l
+
+          if [ -f sing-box ]; then
+              rm -f LICENSE
+          else
+              echo "Error: sing-box binary not found!"
+              exit 1
+          fi
+
+      - name: Create zip package
+        id: package
+        run: |
+          FINAL_NAME="android-sing-box-${{ inputs.sing_box_version }}.zip"
+
+          cd staging
+          zip -r "../$FINAL_NAME" .
+          echo "file_name=$FINAL_NAME" >> "$GITHUB_OUTPUT"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          archive: false
+          path: ${{ steps.package.outputs.file_name }}
