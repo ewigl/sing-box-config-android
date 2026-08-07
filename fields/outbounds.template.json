@@ -1,0 +1,18 @@
+{
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "🚀 Default",
+      "outbounds": ["⚡ Direct"]
+    },
+    {
+      "type": "selector",
+      "tag": "✨ Gemini",
+      "outbounds": ["⚡ Direct"]
+    },
+    {
+      "type": "direct",
+      "tag": "⚡ Direct"
+    }
+  ]
+}
