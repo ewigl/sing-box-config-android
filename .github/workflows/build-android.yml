@@ -86,8 +86,14 @@ jobs:
           fi
 
           printf '{}' > config.json
-          tmp/sing-box-linux/sing-box merge ./config.json -C ./fields > staging/sing-box/config.json
+          tmp/sing-box-linux/sing-box merge config.json -C fields
 
+          if [ ! -s config.json ]; then
+              echo "Error: merged config.json is empty!"
+              exit 1
+          fi
+
+          cp config.json staging/sing-box/config.json
           cp scripts/* staging/scripts/
 
       - name: Download and extract dashboard
