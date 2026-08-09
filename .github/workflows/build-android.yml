@@ -86,7 +86,7 @@ jobs:
           fi
 
           printf '{}' > config.json
-          tmp/sing-box-linux/sing-box merge config.json -C fields
+          tmp/sing-box-linux/sing-box merge config.json -c outbounds.template.json -C fields
 
           if [ ! -s config.json ]; then
               echo "Error: merged config.json is empty!"

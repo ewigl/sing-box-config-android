@@ -8,7 +8,12 @@
     {
       "type": "selector",
       "tag": "✨ Gemini",
-      "outbounds": ["⚡ Direct"]
+      "outbounds": ["🚀 Default", "⚡ Direct"]
+    },
+    {
+      "type": "selector",
+      "tag": "Ⓜ Microsoft",
+      "outbounds": ["🚀 Default", "⚡ Direct"]
     },
     {
       "type": "direct",
