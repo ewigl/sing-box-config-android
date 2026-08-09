@@ -3,14 +3,14 @@
     "servers": [
       {
         "type": "tls",
-        "tag": "dns_cf",
-        "server": "1.1.1.1",
-        "detour": "🚀 Default"
+        "tag": "dns_ali",
+        "server": "223.5.5.5"
       },
       {
         "type": "tls",
-        "tag": "dns_ali",
-        "server": "223.5.5.5"
+        "tag": "dns_cf",
+        "server": "1.1.1.1",
+        "detour": "🚀 Default"
       },
       {
         "type": "local",
@@ -20,12 +20,8 @@
     ],
     "rules": [
       {
-        "rule_set": ["geosite-cn"],
+        "rule_set": "cn",
         "server": "dns_ali"
-      },
-      {
-        "rule_set": ["geosite-private"],
-        "server": "dns_local"
       },
       {
         "action": "evaluate",
@@ -33,8 +29,7 @@
       },
       {
         "match_response": true,
-        "rule_set": ["geoip-cn"],
-        "action": "route",
+        "rule_set": "geoip-cn",
         "server": "dns_ali"
       },
       {

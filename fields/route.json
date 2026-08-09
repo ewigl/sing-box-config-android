@@ -1,37 +1,5 @@
 {
   "route": {
-    "rule_set": [
-      {
-        "tag": "geosite-cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/cn.srs"
-      },
-      {
-        "tag": "geoip-private",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/private.srs"
-      },
-      {
-        "tag": "geosite-private",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/private.srs"
-      },
-      {
-        "tag": "geoip-cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/cn.srs"
-      },
-      {
-        "tag": "google-gemini",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/google-gemini.srs"
-      }
-    ],
     "rules": [
       {
         "action": "sniff"
@@ -41,17 +9,56 @@
         "action": "hijack-dns"
       },
       {
-        "rule_set": [
-          "geosite-cn",
-          "geoip-cn",
-          "geosite-private",
-          "geoip-private"
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "rule_set": "private"
+          },
+          {
+            "ip_is_private": true
+          }
         ],
+        "outbound": "⚡ Direct"
+      },
+      {
+        "protocol": "bittorrent",
         "outbound": "⚡ Direct"
       },
       {
         "rule_set": "google-gemini",
         "outbound": "✨ Gemini"
+      },
+      {
+        "rule_set": "microsoft",
+        "outbound": "Ⓜ Microsoft"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "rule_set": "cn"
+          },
+          {
+            "rule_set": "geoip-cn"
+          }
+        ],
+        "outbound": "⚡ Direct"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": ["cn", "google-gemini", "microsoft", "private"],
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/{tag}.srs"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-cn",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/cn.srs"
       }
     ],
     "default_domain_resolver": "dns_ali",
