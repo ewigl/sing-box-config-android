@@ -3,21 +3,72 @@
     {
       "type": "selector",
       "tag": "🚀 Default",
-      "outbounds": ["⚡ Direct"]
+      "outbounds": ["🇺🇸 美国1", "🇺🇸 美国2", "🇸🇬 新加坡1", "⚡ Direct"]
     },
     {
       "type": "selector",
       "tag": "✨ Gemini",
-      "outbounds": ["🚀 Default", "⚡ Direct"]
+      "outbounds": [
+        "🚀 Default",
+        "🇺🇸 美国1",
+        "🇺🇸 美国2",
+        "🇸🇬 新加坡1",
+        "⚡ Direct"
+      ]
     },
     {
       "type": "selector",
       "tag": "Ⓜ Microsoft",
-      "outbounds": ["🚀 Default", "⚡ Direct"]
+      "outbounds": [
+        "🚀 Default",
+        "🇺🇸 美国1",
+        "🇺🇸 美国2",
+        "🇸🇬 新加坡1",
+        "⚡ Direct"
+      ]
     },
     {
       "type": "direct",
       "tag": "⚡ Direct"
+    },
+    {
+      "tag": "🇺🇸 美国1",
+      "type": "shadowsocks",
+      "server": "1.1.1.1",
+      "server_port": 54321,
+      "method": "aes-256-gcm",
+      "password": "password",
+      "plugin": "obfs-local",
+      "plugin_opts": "mode=http;host=host.com"
+    },
+    {
+      "tag": "🇺🇸 美国2",
+      "type": "anytls",
+      "server": "1.1.1.1",
+      "server_port": 54321,
+      "tls": {
+        "enabled": true,
+        "server_name": "1.1.1.1",
+        "insecure": true,
+        "alpn": ["h2", "http/1.1"],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "password": "password"
+    },
+    {
+      "tag": "🇸🇬 新加坡1",
+      "type": "trojan",
+      "server": "server.address",
+      "server_port": 12345,
+      "password": "1234554321",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      },
+      "tcp_fast_open": false
     }
   ]
 }
